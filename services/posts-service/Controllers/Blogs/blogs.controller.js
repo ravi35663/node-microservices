@@ -5,7 +5,7 @@ const create = async (req,res)=>{
     try{
         const user_id = req.user.id;
         const {title,description} = req.body;
-        const blog = await BlogModel.create({title,description});
+        const blog = await BlogModel.create({title,description,user_id});
         return res.status(200).send(successResponse('Success',200,blog));
     }catch(err){
         return res.status(500).send(errorResponse(err.message,500,{}));

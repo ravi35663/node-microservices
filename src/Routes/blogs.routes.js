@@ -1,13 +1,14 @@
 const express = require('express');
-const { isValidUser } = require('../middlewares/auth');
+const { isValidUser } = require('../middleware/auth');
+const {createBlogHandle,fetchAllBlogs,fetchBlogsByUser} = require('../apiHandler/postHandler/index')
 const Router = express.Router();
 
 //Public Route
-Router.post('/fetch-all-posts');
+Router.get('/',fetchAllBlogs);
 
 // Protected Routes
 Router.use(isValidUser);
-Router.post('/create-blog');
-Router.get('/get-blog-by-user');
+Router.post('/create',createBlogHandle);
+Router.get('/get-by-user',fetchBlogsByUser);
 
 module.exports = Router;
